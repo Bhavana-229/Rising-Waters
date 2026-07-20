@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🌊 Rising Waters</h1>
+    <h2>Flood Prediction Result</h2>
+
+    <div class="result-box">
+
+        <h3>Flood Probability</h3>
+        <h1>{{ prediction }}</h1>
+
+        <h3>Flood Risk Level</h3>
+        <h2>{{ risk }}</h2>
+
+        {% if prediction < 0.30 %}
+            <p style="color:green;font-weight:bold;">
+                The predicted flood probability is low. Normal monitoring is recommended.
+            </p>
+        {% elif prediction < 0.60 %}
+            <p style="color:orange;font-weight:bold;">
+                The predicted flood probability is moderate. Stay alert and monitor weather updates.
+            </p>
+        {% else %}
+            <p style="color:red;font-weight:bold;">
+                High flood probability detected. Follow local safety guidelines and emergency alerts.
+            </p>
+        {% endif %}
+
+    </div>
+
+    <br>
+
+    <a href="/">
+        <button>🔄 Predict Again</button>
+    </a>
+
+</div>
+
+</body>
+</html>
